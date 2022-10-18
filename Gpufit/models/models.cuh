@@ -50,7 +50,7 @@ __device__ void calculate_model(
     case LINEAR_1D:
         calculate_linear1d(parameters, n_fits, n_points, value, derivative, point_index, fit_index, chunk_index, user_info, user_info_size);
         break;
-    case LINEAR_1D:
+    case LINEAR_3D:
         calculate_linear3d(parameters, n_fits, n_points, value, derivative, point_index, fit_index, chunk_index, user_info, user_info_size);
         break;
     case FLETCHER_POWELL_HELIX:
