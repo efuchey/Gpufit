@@ -3,6 +3,7 @@
 
 #include <assert.h>
 #include "linear_1d.cuh"
+#include "linear_3d.cuh"
 #include "gauss_1d.cuh"
 #include "gauss_2d.cuh"
 #include "gauss_2d_elliptic.cuh"
@@ -49,6 +50,9 @@ __device__ void calculate_model(
     case LINEAR_1D:
         calculate_linear1d(parameters, n_fits, n_points, value, derivative, point_index, fit_index, chunk_index, user_info, user_info_size);
         break;
+    case LINEAR_1D:
+        calculate_linear3d(parameters, n_fits, n_points, value, derivative, point_index, fit_index, chunk_index, user_info, user_info_size);
+        break;
     case FLETCHER_POWELL_HELIX:
         calculate_fletcher_powell_helix(parameters, n_fits, n_points, value, derivative, point_index, fit_index, chunk_index, user_info, user_info_size);
         break;
@@ -85,6 +89,7 @@ void configure_model(ModelID const model_id, int & n_parameters, int & n_dimensi
     case GAUSS_2D_ROTATED:      n_parameters = 7; n_dimensions = 2; break;
     case CAUCHY_2D_ELLIPTIC:    n_parameters = 6; n_dimensions = 2; break;
     case LINEAR_1D:             n_parameters = 2; n_dimensions = 1; break;
+    case LINEAR_3D:             n_parameters = 4; n_dimensions = 2; break;
     case FLETCHER_POWELL_HELIX: n_parameters = 3; n_dimensions = 1; break;
     case BROWN_DENNIS:          n_parameters = 4; n_dimensions = 1; break;
     case SPLINE_1D:             n_parameters = 3; n_dimensions = 1; break;
